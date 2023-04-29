@@ -13,7 +13,7 @@ class SegmentationModel:
 
     def __init__(self, weights: str):
 
-        self.model = smp.DeepLabV3Plus("timm-efficientnet-b0", classes=1,
+        self.model = smp.DeepLabV3Plus("resnet18", classes=1,
                                        encoder_weights=None)
 
         self.model.load_state_dict(torch.load(weights,
@@ -47,7 +47,7 @@ class SegmentationModel:
         mask = self.predict(image)
         mask = cv2.resize(mask.astype('uint8'), self.src_image_size[::-1])
 
-        white_background = Image.new('RGB', self.src_image_size, (255, 255, 255))
+        white_background = Image.new('RGB', self.src_image_size[::-1], (255, 255, 255))
         pil_mask = Image.fromarray(mask)
         pil_image = Image.fromarray(image)
 

@@ -9,7 +9,7 @@ from models.segmentation_model import SegmentationModel
 app = Flask(__name__)
 
 ANGLE_WEIGHTS = './weights/angle_classification.pt'
-SEGMENTATION_WEIGHTS = './weights/car_segmentation.pt'
+SEGMENTATION_WEIGHTS = './weights/model_best_loss_resnet_18.pt'
 
 angle_model = AngleModel(ANGLE_WEIGHTS)
 segmentation_model = SegmentationModel(SEGMENTATION_WEIGHTS)
