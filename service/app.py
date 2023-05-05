@@ -32,7 +32,7 @@ def change_backgound():
         output_file.seek(0)
         return Response(output_file.read(), mimetype='image/' + image.format.lower())
     else:
-        return {'Message': 'Bad Angle, cannot change background'}
+        return {'Message': 'No car on photo or bad angle, cannot change background'}
 
 
 if __name__ == '__main__':
