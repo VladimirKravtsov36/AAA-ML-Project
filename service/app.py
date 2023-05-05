@@ -17,7 +17,10 @@ segmentation_model = SegmentationModel(SEGMENTATION_WEIGHTS)
 
 @app.route('/change_background', methods=['POST'])
 def change_backgound():
-
+    """
+    Замена фона на белый
+    Работает только с .jpg или .jpeg файлами!
+    """
     image_file = request.files['image']
     image = Image.open(image_file.stream)
     image_array = np.array(image)

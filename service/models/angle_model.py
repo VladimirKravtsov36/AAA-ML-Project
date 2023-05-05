@@ -43,13 +43,18 @@ class AngleModel:
         return transforms(image)
 
     def predict(self, image: np.array) -> int:
+        """
+        Возвращает метку класса от 0 до 6, 
+        подробнее в описании класса и инструкции
+        """
         prep_image = self.preprocess(image)
         prediction = self.model(prep_image[None, :, :, :])[0].argmax()
 
         return int(prediction)
 
     def is_good_angle(self, image: np.array) -> bool:
-        """Функция для отсеивания авто по углу обзора
+        """
+        Функция для отсеивания авто по углу обзора
         Оставляются только следующие типы:
         
         1. Стандартный вид (видно перед и заднее колесо)
