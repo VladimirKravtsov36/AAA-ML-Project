@@ -8,6 +8,7 @@ from models.segmentation_model import SegmentationModel
 
 app = Flask(__name__)
 
+#Веса модели определения ракурса и для сегментации
 ANGLE_WEIGHTS = './weights/angle_classification.pt'
 SEGMENTATION_WEIGHTS = './weights/model_best_loss_resnet_18.pt'
 

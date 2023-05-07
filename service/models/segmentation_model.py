@@ -10,9 +10,14 @@ STD = np.array([0.229, 0.224, 0.225])
 
 
 class SegmentationModel:
-
+    """
+    Модель для сегментации авто
+    change_background возвращает обрезаное авто на белом фоне
+    
+    """
     def __init__(self, weights: str):
-
+        "Инициализация модели, загрузка весов и переход в eval mode"
+        
         self.model = smp.DeepLabV3Plus("resnet18", classes=1,
                                        encoder_weights=None)
 
@@ -43,7 +48,9 @@ class SegmentationModel:
         return (logits > 0.5)*255
 
     def change_background(self, image: np.array) -> np.array:
-
+        """
+        Возвращает обрезаное авто на белом фоне
+        """
         mask = self.predict(image)
         mask = cv2.resize(mask.astype('uint8'), self.src_image_size[::-1])
 
