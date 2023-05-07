@@ -10,13 +10,13 @@
 <body>
 
 {% if not image and not error %}
-<div class="container col-9 mt-5">
-    <h1>Привет ААА!</h1>
+<div class="container col-7 mt-5">
+    <h1>ИИ-привет из бандитского Петербурга!</h1>
 </div>
 {% endif %}
 
 {% if error %}
-<div class="container col-9 mt-3">
+<div class="container col-7 mt-3">
     <div class="alert alert-danger" role="alert">
         {{error}}
     </div>
@@ -24,51 +24,23 @@
 {% endif %}
 
 {% if image %}
-<div class="container col-9 mt-3">
-    <img src="{{image}}">
-    <p> Вот ваше изображение с полигонами </p>
+<div class="container col-7  mt-3 border border-2 rounded-3 p-3 pb-0">
+    <img src="{{image}}" class="img-fluid border border-2 rounded-3 p-3" alt="Responsive image">
+    <div class="mt-2">
+        <p> Вот ваше изображение с новым фоном</p>
+    </div>
+    
 </div>
 {% endif %}
 
-{% if words %}
-<div class="container text-center col-9 mt-3">
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">Изображение</th>
-            <th scope="col">Слово</th>
-            <th scope="col">Уверенность</th>
-        </tr>
-        </thead>
-        <tbody>
-            {% for word in words %}
-            <tr>
-                <td><img src={{word.image}}></td>
-                <td>{{word.text}}</td>
-                <td class="
-                    {% if word.confidence > 0.95 %}
-                        table-success
-                    {% elif word.confidence > 0.80 %}
-                        table-warning
-                    {% else %}
-                        table-danger
-                    {% endif %}
-                    ">{{"%.2f"|format(word.confidence * 100)}}%</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
-{% endif %}
 
-<div class="container col-9 mt-3" >
-    <form class="border border-2 rounded-3 p-3" method="POST" enctype="multipart/form-data">
+<div class="container col-7 mt-3 mb-3 border border-2 rounded-3 p-3" >
+    <form class="" method="POST" enctype="multipart/form-data">
         <div class="mb-3">
-            <label class="form-label" for="image">Выберите изображение для распознования текста</label>
+            <label class="form-label" for="image">Выберите изображение для замены фона</label>
             <input class="form-control" type="file" name="image" id="image" accept="image/jpeg">
-            <label class="form-text" for="image">распознование доступно только на английском языке</label>
         </div>
-        <input class="btn btn-primary" type="submit" class="btn btn-primary mb-3">Распознать текст {% if words %} снова {% endif %}</button>
+        <button class="btn btn-primary" type="submit">Заменить фон {% if image %} снова {% endif %}</button>
     </form>
 </div>
 

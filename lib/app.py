@@ -5,7 +5,7 @@ import jinja2
 from aiohttp.web import Application
 
 from lib import views
-from lib.models import create_model
+from lib.models import angle_model, segmentation_model
 
 
 lib = Path("lib")
@@ -21,7 +21,8 @@ def create_app() -> Application:
         app=app,
         loader=jinja2.FileSystemLoader(lib / "templates"),
     )
-    app["model"] = create_model()
+    app["angle_model"] = angle_model()
+    app["segmentation_model"] = segmentation_model()
     return app
 
 
