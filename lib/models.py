@@ -3,7 +3,7 @@ from models.segmentation_model import SegmentationModel
 
 
 ANGLE_WEIGHTS = './models/weights/angle_classification.pt'
-SEGMENTATION_WEIGHTS = './models/weights/model_best_loss_resnet_18.pt'
+SEGMENTATION_WEIGHTS = './models/weights/0.0487_24_epochs_resnet18.pt'
 
 
 def angle_model():

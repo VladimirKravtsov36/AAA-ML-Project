@@ -40,7 +40,7 @@ class SegmentationModel:
 
         logits = prediction.sigmoid().detach().numpy()[0][0]
 
-        return (logits > 0.5)*255
+        return (logits > 0.08)*255
 
     def change_background(self, image: np.array) -> np.array:
 
