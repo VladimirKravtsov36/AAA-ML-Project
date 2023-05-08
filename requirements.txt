@@ -2,7 +2,7 @@ aiohttp==3.8.3
 aiohttp-jinja2==1.5.1
 beautifulsoup4==4.11.2
 Flask==2.0.3
-pillow
-segmentation-models-pytorch
-numpy
+pillow==9.2.0
+segmentation-models-pytorch==0.3.2
+numpy==1.23.4
 opencv-python==4.6.0.66
