@@ -27,11 +27,14 @@ class IndexView(View):
                 new_background = segmentation_model.change_background(image_array)
                 new_background_pil = Image.fromarray(new_background)
                 output_file = image_to_img_src(new_background_pil)
+                print("OK res")
                 ctx = {"image": output_file}
-                return render_template("index.html", self.request, ctx)
             else:
-                return {'Message': 'No car on photo or bad angle, cannot change background'}
-
+                err = ValueError('No car on photo or bad angle, cannot change background')
+                print(f'caught error {str(err)}')
+                ctx = {"error": str(err)}
+            return render_template("index.html", self.request, ctx)
+            
         except Exception as err:
             ctx = {"error": str(err)}
             return render_template("index.html", self.request, ctx)
