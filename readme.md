@@ -49,12 +49,12 @@ AAA ML Project
 
 Для выполнения линтеров::
 
-$ make lint
+`$ make lint`
 
 или каждый по отдельности::
 
-$ make flake8
-$ make pycodestyle
-$ make pylint
+`$ make flake8`
+`$ make pycodestyle`
+`$ make pylint`
 
 

@@ -22,8 +22,8 @@ class AngleModel:
     """
     def __init__(self, weights: str):
 
-        self.model = torchvision.models.efficientnet_b2()
-        self.model.classifier[1] = torch.nn.Linear(1408, 7)
+        self.model = torchvision.models.efficientnet_b2()#efficientnet_v2_s() or efficientnet_b2()
+        self.model.classifier[1] = torch.nn.Linear(1408, 7)#(1280, 7) for efficientnet_v2_s, (1408, 7), for efficientnet_b2()
         self.model.classifier.append(torch.nn.Softmax())
 
         self.model.load_state_dict(torch.load(weights,
@@ -34,8 +34,8 @@ class AngleModel:
 
         transforms = T.Compose([
             T.ToPILImage(),
-            T.Resize(size=(288, 288),
-                     interpolation=T.InterpolationMode.BICUBIC),
+            T.Resize(size=(288, 288), #(384, 384) for efficientnet_v2_s() or (288, 288) for efficientnet_b2()
+                     interpolation=T.InterpolationMode.BICUBIC),#BILINEAR for efficientnet_v2_s() or BICUBIC for efficientnet_b2()
             T.ToTensor(),
             T.Normalize(MEAN, STD)
         ])
