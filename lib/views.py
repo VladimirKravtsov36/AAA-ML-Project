@@ -30,11 +30,13 @@ class IndexView(View):
                 print("OK res")
                 ctx = {"image": output_file}
             else:
-                err = ValueError('No car on photo or bad angle, cannot change background')
-                print(f'caught error {str(err)}')
+                err = ValueError(
+                    "No car on photo or bad angle, cannot change background"
+                )
+                print(f"caught error {str(err)}")
                 ctx = {"error": str(err)}
             return render_template("index.html", self.request, ctx)
-            
+
         except Exception as err:
             ctx = {"error": str(err)}
             return render_template("index.html", self.request, ctx)
