@@ -10,7 +10,7 @@ class MyUser(HttpUser):
     @task
     def replace_background(self):
 
-        images = sorted(glob.glob('test_images/*.jpg'))
+        images = sorted(glob.glob('tests/test_images/*.jpg'))
         # Define the file path of the image to upload
         image_path = random.choice(images)
 
