@@ -1,3 +1,6 @@
+import glob
+import random
+
 from locust import HttpUser, task, between
 
 
@@ -6,8 +9,10 @@ class MyUser(HttpUser):
 
     @task
     def replace_background(self):
+
+        images = sorted(glob.glob('test_images/*.jpg'))
         # Define the file path of the image to upload
-        image_path = 'test_images/standard.jpg'
+        image_path = random.choice(images)
 
         # Define the payload with the file to be uploaded
         files = {'image': open(image_path, 'rb')}
