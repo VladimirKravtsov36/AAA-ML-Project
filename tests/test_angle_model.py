@@ -18,7 +18,7 @@ PATH_TO_SERVICE = os.getenv("PATH_TO_PROJ")
 ERR_STR = "No car on photo or bad angle, cannot change background"
 ##"models/weights/angle_model_8_0.8223.pt" для efficientnet_v2_s()
 ##"models/weights/angle_classification.pt" для effnet_b2
-ANGLE_WEIGHTS = PATH_TO_SERVICE + "/" + "./models/weights/angle_model_b2_0.8021.pt"
+ANGLE_WEIGHTS = PATH_TO_SERVICE + "/" + "./models/weights/mobilenet_best_loss_21_0.8651.pt"
 BAD_ANGLE_IMAGES_LIST = ["opened_doors_image1.jpg","opened_doors_image2.jpg"]
 BAD_ANGLE_IMAGES_LIST_ALL = glob.glob("tests/test_images/bad_images/*.jpg")
 GOOD_ANGLE_IMAGES_LIST_ALL = glob.glob("tests/test_images/good_images/*.jpg")

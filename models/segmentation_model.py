@@ -45,9 +45,10 @@ class SegmentationModel:
     def change_background(self, image: np.array) -> np.array:
 
         mask = self.predict(image)
-        mask = cv2.resize(mask.astype('uint8'), self.src_image_size[::-1])
+        src_image_2d_size = self.src_image_size[::-1]
+        mask = cv2.resize(mask.astype('uint8'), src_image_2d_size)
 
-        white_background = Image.new('RGB', self.src_image_size[::-1], (255, 255, 255))
+        white_background = Image.new('RGB', src_image_2d_size, (255, 255, 255))
         pil_mask = Image.fromarray(mask)
         pil_image = Image.fromarray(image)
 
