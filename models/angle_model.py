@@ -13,17 +13,15 @@ class AngleModel:
     Рассматриваются следующие типы (подробнее в соответствующей инструкции):
     
     0. Стандартный вид (видно перед и заднее колесо)
-    1. Открытые двери (или багажник)
-    2. Вид сбоку
-    3. Вид сзади 
-    4. Вид спереди
-    5. Нет машины
-    6. Другое
+    1. Вид сбоку
+    2. Вид сзади 
+    3. Вид спереди
+    4. Другое
     """
     def __init__(self, weights: str):
 
-        self.model = torchvision.models.efficientnet_b2()#efficientnet_v2_s() or efficientnet_b2()
-        self.model.classifier[1] = torch.nn.Linear(1408, 7)#(1280, 7) for efficientnet_v2_s, (1408, 7), for efficientnet_b2()
+        self.model = torchvision.models.mobilenet_v3_large()#efficientnet_v2_s() or efficientnet_b2()
+        self.model.classifier[3] = torch.nn.Linear(in_features=1280, out_features=5)#(1280, 7) for efficientnet_v2_s, (1408, 7), for efficientnet_b2()
         self.model.classifier.append(torch.nn.Softmax())
 
         self.model.load_state_dict(torch.load(weights,
@@ -34,8 +32,8 @@ class AngleModel:
 
         transforms = T.Compose([
             T.ToPILImage(),
-            T.Resize(size=(288, 288), #(384, 384) for efficientnet_v2_s() or (288, 288) for efficientnet_b2()
-                     interpolation=T.InterpolationMode.BICUBIC),#BILINEAR for efficientnet_v2_s() or BICUBIC for efficientnet_b2()
+            T.Resize(size=(224, 224), #(384, 384) for efficientnet_v2_s() or (288, 288) for efficientnet_b2()
+                     interpolation=T.InterpolationMode.BILINEAR),#BILINEAR for efficientnet_v2_s() or BICUBIC for efficientnet_b2()
             T.ToTensor(),
             T.Normalize(MEAN, STD)
         ])
@@ -64,4 +62,4 @@ class AngleModel:
         """
         prediction = self.predict(image)
 
-        return prediction in [0, 2, 3, 4]
+        return prediction != 4
