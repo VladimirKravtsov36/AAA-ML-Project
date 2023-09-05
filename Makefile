@@ -1,4 +1,4 @@
-IMAGE:=aaa-frontend
+IMAGE:=aaa-background-removal
 
 help:
 	@echo "help - show this help"
